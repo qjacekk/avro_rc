@@ -7,7 +7,7 @@ It can process a single file or a directory of files (e.g. daily partition).
 
 It returns total row count, total size and the number of files.
 
-This trick is to read the metadata (file data blocks headers) and skip decoding records records. For more details see: [Avro Object Container Files spec](https://avro.apache.org/docs/1.11.1/specification/#object-container-files)
+The trick is to read the metadata (file data blocks headers) and skip decoding records records. For more details see: [Avro Object Container Files spec](https://avro.apache.org/docs/1.11.1/specification/#object-container-files)
 
 
 ## Why
@@ -37,7 +37,7 @@ Options:
   -v    verbose
 ```
 
-> The reader buffer size can have significant impact on the speed. By default it's 32kB. Setting it to a value close to L1 cache of your CPU can give some additional gains.
+> The reader buffer size can have significant impact on the speed. By default it's 32kB. Setting it to a value close to L1 cache size of your CPU can give some additional gains.
 
 > Scanning a directory is concurrent by default with the number of parallel workers equal to the number of logical CPUs. Use -s flag to scan files sequentially in a single thread (in case maxing all CPUs is not recommeded).
 
