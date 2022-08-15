@@ -1,16 +1,19 @@
 # avro_rc
 Avro record counter
 
-This is a simple command line tool to calcualte the number of records in Avro files.
+This is a simple command line tool to quickly calcualte the number of records in Avro files.
 
 It can process a single file or a directory of files (e.g. daily partition).
 
 It returns total row count, total size and the number of files.
 
+This trick is to read the metadata (file data blocks headers) and skip decoding records records. For more details see: [Avro Object Container Files spec](https://avro.apache.org/docs/1.11.1/specification/#object-container-files)
+
+
 ## Why
 - I need a tool that would give me statistics for daily or hourly partition of Avro files that are going to be ingested into HDFS/Hive,
 - existing tools are slow, either because they require JVM to start or because they decode every single record,
-- calculating such stats in Hive can be extremely slow
+- calculating such stats in Hive can be extremely slow.
 
 ## Build & usage
 
@@ -34,7 +37,7 @@ Options:
   -v    verbose
 ```
 
-> The reader buffer size can have significant impact on the speed. By default it's 32kb. Setting it to a value close to L1 cache of your CPU can give some additional gains.
+> The reader buffer size can have significant impact on the speed. By default it's 32kB. Setting it to a value close to L1 cache of your CPU can give some additional gains.
 
 > Scanning a directory is concurrent by default with the number of parallel workers equal to the number of logical CPUs. Use -s flag to scan files sequentially in a single thread (in case maxing all CPUs is not recommeded).
 
