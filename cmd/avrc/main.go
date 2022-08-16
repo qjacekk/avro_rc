@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
-	"avro_rc"
+	"github.com/qjacekk/avro_rc"
 )
 
 // v0.1, Jacek Karas, 2022-08-11

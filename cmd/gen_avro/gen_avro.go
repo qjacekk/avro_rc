@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"avro_rc/gen_avro"
+	"github.com/qjacekk/avro_rc/gen_avro"
 )
 
 func checkErr(err error) {

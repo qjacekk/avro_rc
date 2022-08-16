@@ -1,4 +1,4 @@
-module avro_rc
+module github.com/qjacekk/avro_rc
 
 go 1.19
 

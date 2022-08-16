@@ -128,7 +128,7 @@ func ScanPath(path string, pPattern string) (int64, int64, int64) {
 				if match, _ := filepath.Match(pPattern, info.Name()); match {
 					rc, err := ScanAvroFile(path, BuffSize)
 					if err != nil {
-						fmt.Fprintf(os.Stderr, "Unable to read file: %s, errror: %s\n", path, err.Error())
+						fmt.Fprintf(os.Stderr, "Unable to read file: %s, error: %s\n", path, err.Error())
 						return nil
 					}
 					totalRowCnt += rc
@@ -154,7 +154,7 @@ func worker(files <-chan *AvroFile) {
 	for file := range files {
 		rc, err := ScanAvroFile(file.path, BuffSize)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Unable to read file: %s, errror: %s\n", file.path, err.Error())
+			fmt.Fprintf(os.Stderr, "Unable to read file: %s, error: %s\n", file.path, err.Error())
 		} else {
 			atomic.AddInt64(&totalRowCnt,rc)
 			atomic.AddInt64(&totalSize, file.size)
@@ -170,6 +170,10 @@ type AvroFile struct {
 var files chan *AvroFile
 // Scans file or directory using multiple threads
 func ScanPathMT(path string, pPattern string) (int64, int64, int64) {
+	// init counters - this is necessary mainly for unit tests
+	totalRowCnt = 0
+	totalSize = 0
+	fileCount = 0
 	fi, err := os.Stat(path)
 	CheckErr(err)
 	if fi.Mode().IsRegular() {

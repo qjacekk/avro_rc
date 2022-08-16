@@ -1,7 +1,7 @@
 package avro_rc
 
 import (
-	"avro_rc/gen_avro"
+	"github.com/qjacekk/avro_rc/gen_avro"
 	"fmt"
 	"os"
 	"testing"
@@ -58,6 +58,7 @@ func TestScanPathDirMT(t *testing.T) {
 		t.Errorf("Failed with rc: %d, s: %d, f: %d\n", rc,s,fc)
 	}
 }
+
 func TestScanPathDirMTBad(t *testing.T) {
 	if CheckBadData() {
 		rc,s,fc := ScanPathMT(badFolder, "*.avro")
