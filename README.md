@@ -25,7 +25,7 @@ $ go build
 $ avrc -h
 
 Get Avro files statistics
-  usage: avro_rc [options] <path>
+  usage: avrc [options] <path>
      <path> a single file or directory to scan recursively.
   returns: row_count total_file_size num_of_files
 Options:

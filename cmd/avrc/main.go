@@ -22,7 +22,7 @@ func main() {
 	var bsize = flag.Int("b", avro_rc.BuffSize, "buffer size")
 	flag.Usage = func () {
 		fmt.Fprintln(flag.CommandLine.Output(), "Get Avro files statistics")
-		fmt.Fprintln(flag.CommandLine.Output(), "  usage: avro_rc [options] <path>")
+		fmt.Fprintln(flag.CommandLine.Output(), "  usage: avrc [options] <path>")
 		fmt.Fprintln(flag.CommandLine.Output(), "     <path> a single file or directory to scan recursively.")
 		fmt.Fprintln(flag.CommandLine.Output(), "  returns: row_count total_file_size num_of_files")
 		fmt.Fprintln(flag.CommandLine.Output(), "Options:")
